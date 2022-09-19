@@ -21,16 +21,16 @@ class SinhVien
     }
 
     public function all(){
-        $array = [];
+        $arr = [];
         $sql = "select 
-                sinh_vien.*,
-                lop.name as className 
+                student.*,
+                class.name as className 
                 from 
-                    sinh_vien
+                    student
                 join 
-                    lop
+                    class
                 where
-                    sinh_vien.classId = lop.id";
+                    student.classId = class.id";
         $connect = new Connect();
         $results = $connect ->select_all($sql);
         foreach($results as $each) {
@@ -42,13 +42,13 @@ class SinhVien
 
     public function create($params){
         $object = new SinhVienObject($params);
-        $sql = "insert into sinh_vien(name, classId) values ('{$object -> getName()}', '{$object -> getClassId()}')";
+        $sql = "insert into student(name, classId) values ('{$object -> getName()}', '{$object -> getClassId()}')";
         $connect = new Connect();
         $connect ->execute($sql);
     }
 
     public function edit($id){
-        $sql  ="select * from sinh_vien where id = '$id'";
+        $sql  ="select * from student where id = '$id'";
         $connect = new Connect();
         $result = $connect -> select_all($sql);
         $each = mysqli_fetch_array($result);
@@ -57,7 +57,7 @@ class SinhVien
 
     public function update($params){
         $object = new SinhVienObject($params);
-        $sql  ="update sinh_vien
+        $sql  ="update student
                 set
                     name = '{$object->getName()}',
                     classId = '{$object->getClassId()}'
@@ -67,7 +67,7 @@ class SinhVien
     }
 
     public function delete($id){
-        $sql  ="delete from sinh_vien
+        $sql  ="delete from student
                 where id = '$id'";
         $connect = new Connect();
         $connect -> execute($sql);

@@ -6,7 +6,7 @@ class Lop
 
     public function all () {
         $arr = [];
-        $sql = "select * from lop";
+        $sql = "select * from class";
         $connect = new Connect();
         $results = $connect ->select_all($sql);
         foreach ($results as $each) {
@@ -18,14 +18,14 @@ class Lop
 
     public function create($params){
         $object = (new LopObject($params));
-        $sql = "insert into lop (name) values ('{$object -> getName()}')";
+        $sql = "insert into class (name) values ('{$object -> getName()}')";
         (new Connect()) ->execute($sql);
     }
 
     public function find($id) {
         $arr = [];
         $connect = new Connect();
-        $sql = "select * from lop where id = '$id'";
+        $sql = "select * from class where id = '$id'";
         $result = $connect ->select_all($sql);
         $arr = mysqli_fetch_array($result);
         return (new LopObject($arr)); 
@@ -33,14 +33,14 @@ class Lop
 
     public function update($params) {
         $object = (new LopObject($params));
-        $sql = "update lop 
+        $sql = "update class 
                 set name = '{$object->getName()}'
                 where id = '{$object->getId()}'";
         (new Connect()) ->execute($sql);
     }
 
     public function delete($id) {
-        $sql = "delete from lop 
+        $sql = "delete from class 
                 where id = '$id'";
         (new Connect()) ->execute($sql);
     }

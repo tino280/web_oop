@@ -5,7 +5,7 @@ class Connect
     private string $localhost = 'localhost';    
     private string $username = 'root';    
     private string $password = '';
-    private string $database = 'web_chuyen_sau';
+    private string $database = 'web_oop';
 
     private function cnt() {
         $connect = mysqli_connect($this->localhost, $this -> username, $this -> password, $this -> database);
